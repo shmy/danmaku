@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:danmaku/src/config.dart';
 import 'package:danmaku/src/danmaku_bullet.dart';
 import 'package:danmaku/src/danmaku_bullet_manager.dart';
@@ -5,7 +7,6 @@ import 'package:danmaku/src/danmaku_controller.dart';
 import 'package:danmaku/src/danmaku_track.dart';
 import 'package:danmaku/src/danmaku_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:collection/collection.dart';
 
 class DanmakuItem {
@@ -33,10 +34,10 @@ class DanmakuItem {
 
 class DanmakuScheduler {
   final List<DanmakuItem> danmakuList = [];
-  Ticker? _ticker;
+  final Duration intervalTime = const Duration(milliseconds: 1000 ~/ 60);
+  Timer? _timer;
   int danIndex = 0;
   Duration position = Duration.zero;
-  Duration lastPosition = Duration.zero;
 
   final DanmakuTrackManager trackManager = DanmakuTrackManager();
   final DanmakuBulletManager bulletManager = DanmakuBulletManager();
@@ -51,15 +52,15 @@ class DanmakuScheduler {
   }
 
   void run() {
-    _ticker = Ticker(_onTick);
-    _ticker?.start();
+    _timer = Timer.periodic(intervalTime, _onTimer);
   }
 
-  void _onTick(Duration elapsed) {
+  void _onTimer(Timer timer) {
     // 暂停不执行
     if (DanmakuConfig.pause) {
       return;
     }
+    position += intervalTime;
     if (danIndex == -1) {
       return;
     }
@@ -70,20 +71,16 @@ class DanmakuScheduler {
       return;
     }
     final item = danmakuList[danIndex];
-    lastPosition = position + elapsed;
-    if (lastPosition > item.duration) {
+    if (position > item.duration) {
       addDanmaku(item);
       danIndex++;
     }
   }
 
   void seekTo(Duration position) {
-    _ticker?.dispose();
     this.position = position;
     danIndex =
         danmakuList.indexWhere((element) => element.duration >= position);
-    _ticker = Ticker(_onTick);
-    _ticker?.start();
   }
 
   // 成功返回AddBulletResBody.data为bulletId
@@ -197,6 +194,6 @@ class DanmakuScheduler {
   }
 
   void dispose() {
-    _ticker?.dispose();
+    _timer?.cancel();
   }
 }

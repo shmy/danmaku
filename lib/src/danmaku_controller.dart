@@ -65,7 +65,7 @@ class DanmakuController extends ChangeNotifier {
     Color color = Colors.red,
   }) {
     final item = DanmakuItem(
-        duration: _schedulerManager.lastPosition,
+        duration: _schedulerManager.position,
         content: text,
         color: color,
         bulletType: DanmakuBulletType.scroll,
@@ -82,7 +82,6 @@ class DanmakuController extends ChangeNotifier {
     }
     _schedulerManager.danmakuList.insert(index, item);
     _schedulerManager.danIndex = index;
-    print(item.duration);
   }
 
   // 弹幕清屏
