@@ -81,6 +81,9 @@ class DanmakuScheduler {
     this.position = position;
     danIndex =
         danmakuList.indexWhere((element) => element.duration >= position);
+    if (danIndex == -1) {
+      danIndex = danmakuList.length;
+    }
   }
 
   // 成功返回AddBulletResBody.data为bulletId
