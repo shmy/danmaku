@@ -143,7 +143,7 @@ class DanmakuBullet extends StatelessWidget {
     return Stack(
       children: <Widget>[
         // Stroked text as border.
-        buildStrokeText(),
+        // buildStrokeText(),
         // Solid text as fill.
         buildText()
       ],

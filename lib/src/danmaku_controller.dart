@@ -62,7 +62,7 @@ class DanmakuController extends ChangeNotifier {
 
   void addDanmaku(
     String text, {
-    Color color = Colors.red,
+    Color color = Colors.white,
     DanmakuBulletType bulletType = DanmakuBulletType.scroll,
     DanmakuBulletPosition bulletPosition = DanmakuBulletPosition.any,
   }) {
