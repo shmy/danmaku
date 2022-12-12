@@ -34,7 +34,7 @@ class DanmakuItem {
 
 class DanmakuScheduler {
   final List<DanmakuItem> danmakuList = [];
-  final Duration intervalTime = const Duration(milliseconds: 1000 ~/ 60);
+  final Duration intervalTime = Duration(milliseconds: DanmakuConfig.unitTimer);
   Timer? _timer;
   int danIndex = 0;
   Duration position = Duration.zero;

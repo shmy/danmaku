@@ -63,17 +63,22 @@ class DanmakuController extends ChangeNotifier {
   void addDanmaku(
     String text, {
     Color color = Colors.red,
+    DanmakuBulletType bulletType = DanmakuBulletType.scroll,
+    DanmakuBulletPosition bulletPosition = DanmakuBulletPosition.any,
   }) {
     final item = DanmakuItem(
         duration: _schedulerManager.position,
         content: text,
         color: color,
-        bulletType: DanmakuBulletType.scroll,
-        bulletPosition: DanmakuBulletPosition.any,
+        bulletType: bulletType,
+        bulletPosition: bulletPosition,
         builder: (Text text) {
           return Container(
             decoration: BoxDecoration(border: Border.all(color: color)),
-            child: Text(text.data!, style: TextStyle(color: color),),
+            child: Text(
+              text.data!,
+              style: TextStyle(color: color),
+            ),
           );
         });
     int index = _schedulerManager.danIndex;
