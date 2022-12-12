@@ -145,7 +145,7 @@ class DanmakuBullet extends StatelessWidget {
         // Stroked text as border.
         buildStrokeText(),
         // Solid text as fill.
-        buildText()
+        // buildText()
       ],
     );
   }
