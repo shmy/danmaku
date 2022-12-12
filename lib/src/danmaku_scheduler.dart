@@ -60,7 +60,7 @@ class DanmakuScheduler {
     if (DanmakuConfig.pause) {
       return;
     }
-    position += intervalTime;
+    position += intervalTime * DanmakuConfig.bulletRate;
     if (danIndex == -1) {
       return;
     }
