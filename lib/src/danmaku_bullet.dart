@@ -129,7 +129,7 @@ class DanmakuBullet extends StatelessWidget {
         foreground: Paint()
           ..style = PaintingStyle.stroke
           ..strokeWidth = 0.5
-          ..color = Colors.white.withOpacity(DanmakuConfig.opacity),
+          ..color = Colors.black.withOpacity(DanmakuConfig.opacity),
       ),
     );
     if (builder != null) {
@@ -143,7 +143,7 @@ class DanmakuBullet extends StatelessWidget {
     return Stack(
       children: <Widget>[
         // Stroked text as border.
-        // buildStrokeText(),
+        buildStrokeText(),
         // Solid text as fill.
         buildText()
       ],
