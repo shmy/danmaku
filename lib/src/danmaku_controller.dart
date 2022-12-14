@@ -75,7 +75,7 @@ class DanmakuController extends ChangeNotifier {
         builder: (Text text) {
           return Container(
             decoration: BoxDecoration(border: Border.all(color: Colors.white.withOpacity(0.5))),
-            child: text,
+            child: Center(child: text),
           );
         });
     int index = _schedulerManager.danIndex;
