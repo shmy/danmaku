@@ -74,7 +74,7 @@ class DanmakuController extends ChangeNotifier {
         bulletPosition: bulletPosition,
         builder: (Text text) {
           return Container(
-            decoration: BoxDecoration(border: Border.all(color: Colors.white.withOpacity(0.5))),
+            decoration: BoxDecoration(border: Border.all(color: color.withOpacity(0.5))),
             child: Center(child: text),
           );
         });
